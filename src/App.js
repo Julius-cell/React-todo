@@ -1,24 +1,50 @@
-import logo from './logo.svg';
-import './App.css';
+// import './App.css';
+import React from "react";
+import { TodoCounter } from "./TodoCounter";
+import { TodoSearch } from "./TodoSearch";
+import { TodoList } from "./TodoList";
+import { CreateTodo } from "./CreateTodo";
+import { TodoItem } from "./TodoItem";
+import { Wrapper } from "./Wrapper";
 
-function App() {
+import { useLocalStorage } from './useLocalStorage'
+// const defaultTodos = [
+//   { text: 'Cortar Cebolla', completed: false },
+//   { text: 'Cortar Pan', completed: false },
+//   { text: 'Terminar curso intro a react', completed: false },
+// ]
+
+function App(props) {
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Wrapper>
+      <TodoCounter
+        // total={totalTodos}
+        // completed={completedTodos}
+      />
+      <TodoSearch
+        // searchValue={searchValue}
+        // setSearchValue={setSearchValue}
+      />
+
+      {/* {isError && <p>Wait, hubo un error</p>}
+      {isLoading && <p>Cargando</p>}
+      {(!isLoading && !todos.length) && <p>Crea tu primer TODO</p>} */}
+      <TodoList
+        // searchValue={searchValue}
+      >
+
+        {todos.map(todo => (
+          <TodoItem
+            key={todo.text}
+            text={todo.text}
+            onCompleted={doneTodo}
+          />
+        ))}
+      </TodoList>
+
+      <CreateTodo />
+    </Wrapper>
   );
 }
 
