@@ -15,23 +15,37 @@ import { useLocalStorage } from './useLocalStorage'
 // ]
 
 function App(props) {
+  const { todos, saveTodos, isLoading, isError } = useLocalStorage('TODOS_V1', []);
+
+  const [searchValue, setSearchValue] = React.useState('');
+  const [completedTodos, setCompletedTodos] = React.useState(0);
+  const [totalTodos, setTotalTodos] = React.useState(todos.length);
+
+  const doneTodo = (text) => {
+    const todoIndex = todos.findIndex(todo => todo.text === text.target.value);
+    let newTodos = [...todos];
+    newTodos[todoIndex].completed = true;
+    newTodos = newTodos.filter(todo => !todo.completed);
+    setCompletedTodos(completedTodos + 1);
+    saveTodos(newTodos);
+  }
 
   return (
     <Wrapper>
       <TodoCounter
-        // total={totalTodos}
-        // completed={completedTodos}
+        total={totalTodos}
+        completed={completedTodos}
       />
       <TodoSearch
-        // searchValue={searchValue}
-        // setSearchValue={setSearchValue}
+        searchValue={searchValue}
+        setSearchValue={setSearchValue}
       />
 
-      {/* {isError && <p>Wait, hubo un error</p>}
+      {isError && <p>Wait, hubo un error</p>}
       {isLoading && <p>Cargando</p>}
-      {(!isLoading && !todos.length) && <p>Crea tu primer TODO</p>} */}
+      {(!isLoading && !todos.length) && <p>Crea tu primer TODO</p>}
       <TodoList
-        // searchValue={searchValue}
+        searchValue={searchValue}
       >
 
         {todos.map(todo => (
