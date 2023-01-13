@@ -19,14 +19,13 @@ function useLocalStorage(itemName, initialValue) {
         }
 
         setItem(parsedItem);
-        console.log('2');
         setIsLoading(false);
       } catch (error) {
         setIsError(true);
       }
 
     }, 2000)
-  });
+  }, []);
 
 
   const saveItem = (newTodos) => {
@@ -34,7 +33,6 @@ function useLocalStorage(itemName, initialValue) {
       const stringifiedTodos = JSON.stringify(newTodos);
       localStorage.setItem(itemName, stringifiedTodos);
       setItem(newTodos);
-      console.log('3');
     } catch (error) {
       setIsError(true);
     }
