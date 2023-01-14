@@ -9,36 +9,31 @@ import { TodoItem } from "./TodoItem";
 import { TodoContext } from "../TodoContext/TodoContex";
 
 function Wrapper() {
+  const {
+    isError,
+    isLoading,
+    todos,
+    doneTodo,
+  } = React.useContext(TodoContext);
+
   return (
     <div className='flex flex-col px-14 py-10 relative min-h-screen'>
       <TodoCounter />
       <TodoSearch />
 
-      <TodoContext.Consumer>
-        {({
-          isError,
-          isLoading,
-          todos,
-          doneTodo,
-        }) => (
-          <React.Fragment>
-            {isError && <p>Wait, hubo un error</p>}
-            {isLoading && <p>Cargando</p>}
-            {(!isLoading && !todos.length) && <p>Crea tu primer TODO</p>}
-            <TodoList>
+      {isError && <p>Wait, hubo un error</p>}
+      {isLoading && <p>Cargando</p>}
+      {(!isLoading && !todos.length) && <p>Crea tu primer TODO</p>}
+      <TodoList>
 
-              {todos.map(todo => (
-                <TodoItem
-                  key={todo.text}
-                  text={todo.text}
-                  onCompleted={doneTodo}
-                />
-              ))}
-            </TodoList>
-          </React.Fragment>
-        )
-        }
-      </TodoContext.Consumer>
+        {todos.map(todo => (
+          <TodoItem
+            key={todo.text}
+            text={todo.text}
+            onCompleted={doneTodo}
+          />
+        ))}
+      </TodoList>
 
       <CreateTodo />
     </div>
