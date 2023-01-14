@@ -5,11 +5,10 @@ import { useLocalStorage } from '../useLocalStorage'
 const TodoContext = React.createContext();
 
 function TodoProvider({ children }) {
-  const { todos, saveTodos, isLoading, isError } = useLocalStorage('TODOS_V1', []);
+  const { todos, saveTodos, isLoading, isError, totalTodos } = useLocalStorage('TODOS_V1', []);
 
   const [searchValue, setSearchValue] = React.useState('');
   const [completedTodos, setCompletedTodos] = React.useState(0);
-  const [totalTodos, setTotalTodos] = React.useState(todos.length);
 
   const doneTodo = (text) => {
     const todoIndex = todos.findIndex(todo => todo.text === text.target.value);
@@ -20,14 +19,6 @@ function TodoProvider({ children }) {
     saveTodos(newTodos);
   }
 
-  // console.log('totalTodos', totalTodos);
-  // console.log('completedTodos', completedTodos);
-  // console.log('searchValue', searchValue);
-  // console.log('setSearchValue', setSearchValue);
-  // console.log('todos', todos);
-  // console.log('doneTodo', doneTodo);
-  // console.log('isLoading', isLoading);
-  // console.log('isError', isError);
   return (
     <TodoContext.Provider value={{
       totalTodos,
