@@ -5,6 +5,7 @@ import { TodoSearch } from "./TodoSearch";
 import { TodoList } from "./TodoList";
 import { CreateTodo } from "./CreateTodo";
 import { TodoItem } from "./TodoItem";
+import { TodoLoading } from './TodoLoading'
 
 import { TodoContext } from "../TodoContext/TodoContex";
 
@@ -22,7 +23,7 @@ function Wrapper() {
       <TodoSearch />
 
       {isError && <p>Wait, hubo un error</p>}
-      {isLoading && <p>Cargando</p>}
+      {isLoading && <TodoLoading/>}
       {(!isLoading && !todos.length) && <p>Crea tu primer TODO</p>}
       <TodoList>
 
