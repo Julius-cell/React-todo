@@ -10,6 +10,15 @@ function TodoProvider({ children }) {
   const [searchValue, setSearchValue] = React.useState('');
   const [completedTodos, setCompletedTodos] = React.useState(0);
 
+  const addTodo = (text) => {
+     const newTodos = [...todos];
+     newTodos.push({
+      text,
+      completed: false
+     });
+     saveTodos(newTodos);
+  }
+
   const doneTodo = (text) => {
     const todoIndex = todos.findIndex(todo => todo.text === text.target.value);
     let newTodos = [...todos];
@@ -26,6 +35,7 @@ function TodoProvider({ children }) {
       searchValue,
       setSearchValue,
       todos,
+      addTodo,
       doneTodo,
       isLoading,
       isError,
