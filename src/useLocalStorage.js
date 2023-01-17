@@ -4,6 +4,8 @@ function useLocalStorage(itemName, initialValue) {
   const [isLoading, setIsLoading] = React.useState(true);
   const [isError, setIsError] = React.useState(false);
   const [item, setItem] = React.useState(initialValue);
+  const [totalTodos, setTotalTodos] = React.useState(0);
+  const [completedTodos, setCompletedTodos] = React.useState(0);
 
   React.useEffect(() => {
     setTimeout(() => {
@@ -17,7 +19,8 @@ function useLocalStorage(itemName, initialValue) {
         } else {
           parsedItem = JSON.parse(localStorageItem);
         }
-
+        setCompletedTodos(parsedItem.filter(item => item.completed).length);
+        setTotalTodos(parsedItem.length);
         setItem(parsedItem);
         setIsLoading(false);
       } catch (error) {
@@ -42,7 +45,11 @@ function useLocalStorage(itemName, initialValue) {
     todos: item,
     saveTodos: saveItem,
     isLoading,
-    isError
+    isError,
+    setTotalTodos,
+    totalTodos,
+    completedTodos,
+    setCompletedTodos
   }
 }
 
