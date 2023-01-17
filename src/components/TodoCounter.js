@@ -3,10 +3,10 @@ import { TodoContext } from '../TodoContext/TodoContex';
 
 
 function TodoCounter() {
-  const { completedTodos } = useContext(TodoContext);
+  const { completedTodos, totalTodos } = useContext(TodoContext);
 
   return (
-    <h2 className='sm:text-sm'> Has completado {completedTodos} de # TODOs </h2>
+    <h2 className='sm:text-sm'> Has completado {completedTodos} de {totalTodos} TODOs </h2>
   )
 }
 

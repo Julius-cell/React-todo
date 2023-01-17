@@ -17,6 +17,8 @@ function Wrapper() {
     doneTodo,
   } = React.useContext(TodoContext);
 
+  const todosIncompleted = todos.filter(todo => !todo.completed);
+
   return (
     <div className='flex flex-col px-14 py-10 relative min-h-screen'>
       <TodoCounter />
@@ -24,10 +26,10 @@ function Wrapper() {
 
       {isError && <p>Wait, hubo un error</p>}
       {isLoading && <TodoLoading/>}
-      {(!isLoading && !todos.length) && <p>Crea tu primer TODO</p>}
+      {(!isLoading && !todosIncompleted.length) && <p>Crea tu primer TODO</p>}
       <TodoList>
 
-        {todos.map(todo => (
+        {todosIncompleted.map(todo => (
           <TodoItem
             key={todo.text}
             text={todo.text}
