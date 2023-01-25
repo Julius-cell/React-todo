@@ -1,12 +1,10 @@
-import React, { useContext } from 'react'
-import { TodoContext } from '../TodoContext/TodoContex';
+import React from 'react'
 
 function TodoList(props) {
-  const { searchValue } = useContext(TodoContext);
 
   const filterTodos = props.children.filter(todo => {
     const text = todo.props.text;
-    return text.toLowerCase().includes(searchValue.toLowerCase())
+    return text.toLowerCase().includes(props.searchValue.toLowerCase())
   });
 
   return (

@@ -1,8 +1,6 @@
 import React, { useState } from 'react'
-import { TodoContext } from '../TodoContext/TodoContex';
 
-function CreateTodo() {
-  const { addTodo } = React.useContext(TodoContext);
+function CreateTodo({ addTodo }) {
 
   const [fullName, setFullName] = useState('');
 
