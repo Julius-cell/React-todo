@@ -9,6 +9,8 @@ import { TodoLoading } from './TodoLoading'
 
 import { useTodos } from "../customHooks/useTodos";
 import { TodoHeader } from './TodoHeader';
+import { TodoError } from "./TodoError";
+import { EmptyTodos } from "./EmptyTodos";
 
 
 function App() {
@@ -24,7 +26,6 @@ function App() {
     addTodo
   } = useTodos();
 
-  const todosIncompleted = todos.filter(todo => !todo.completed);
 
   return (
     <div className='flex flex-col px-14 py-10 relative min-h-screen'>
@@ -39,23 +40,24 @@ function App() {
         />
       </TodoHeader>
 
-      {isError && <p>Wait, hubo un error</p>}
-      {isLoading && <TodoLoading />}
-      {(!isLoading && !todosIncompleted.length) && <p>Crea tu primer TODO</p>}
-
-
-      <TodoList searchValue={searchValue}>
-
-        {todosIncompleted.map(todo => (
+      <TodoList
+        isError={isError}
+        isLoading={isLoading}
+        todos={todos}
+        searchValue={searchValue}
+        onError={() => <TodoError />}
+        onLoading={() => <TodoLoading />}
+        onEmptyTodos={() => <EmptyTodos />}
+        render={todo => (
           <TodoItem
             key={todo.text}
             text={todo.text}
             onCompleted={doneTodo}
           />
-        ))}
-      </TodoList>
+        )}
+      />
 
-      <CreateTodo addTodo={addTodo}/>
+      <CreateTodo addTodo={addTodo} />
     </div>
   )
 }
