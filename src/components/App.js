@@ -29,7 +29,7 @@ function App() {
 
   return (
     <div className='flex flex-col px-14 py-10 relative min-h-screen'>
-      <TodoHeader>
+      <TodoHeader isLoading={isLoading}>
         <TodoCounter
           totalTodos={totalTodos}
           completedTodos={completedTodos}
@@ -55,8 +55,15 @@ function App() {
             onCompleted={doneTodo}
           />
         )}
-      />
-
+      >
+        {/* {todos.map(todo => (
+          <TodoItem
+            key={todo.text}
+            text={todo.text}
+            onCompleted={doneTodo}
+          />
+        ))} */}
+      </TodoList>
       <CreateTodo addTodo={addTodo} />
     </div>
   )
