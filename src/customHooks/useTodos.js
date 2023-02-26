@@ -18,16 +18,18 @@ function useTodos() {
 
   const addTodo = (text) => {
     const newTodos = [...todos];
+    const id = newTodos.length + 1;
     newTodos.push({
       text,
-      completed: false
+      completed: false,
+      id
     });
     setTotalTodos(totalTodos + 1);
     saveTodos(newTodos);
   }
 
-  const doneTodo = (text) => {
-    const todoIndex = todos.findIndex(todo => todo.text === text.target.value);
+  const doneTodo = (item) => {
+    const todoIndex = todos.findIndex(todo => todo.id === +item.target.value);
     let newTodos = [...todos];
     newTodos[todoIndex].completed = true;
     saveTodos(newTodos);

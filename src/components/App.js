@@ -11,6 +11,7 @@ import { useTodos } from "../customHooks/useTodos";
 import { TodoHeader } from './TodoHeader';
 import { TodoError } from "./TodoError";
 import { EmptyTodos } from "./EmptyTodos";
+import { ChangeAlertWithStorageListener } from "./ChangeAlert/ChangeAlert";
 
 
 function App() {
@@ -50,8 +51,8 @@ function App() {
         onEmptyTodos={() => <EmptyTodos />}
         render={todo => (
           <TodoItem
-            key={todo.text}
-            text={todo.text}
+            key={todo.id}
+            todo={todo}
             onCompleted={doneTodo}
           />
         )}
@@ -63,8 +64,10 @@ function App() {
             onCompleted={doneTodo}
           />
         ))} */}
+
       </TodoList>
       <CreateTodo addTodo={addTodo} />
+      <ChangeAlertWithStorageListener />
     </div>
   )
 }
