@@ -1,13 +1,13 @@
 import React from 'react'
 
-function TodoItem({ text, onCompleted }) {
+function TodoItem({ todo, onCompleted }) {
 
   return (
     <div className="flex items-center mb-4">
       <input
         id="default-checkbox" 
         type="checkbox" 
-        value={text} 
+        value={todo.id} 
         className="w-4 h-4" 
         onClick={onCompleted}
       />
@@ -15,7 +15,7 @@ function TodoItem({ text, onCompleted }) {
         htmlFor="default-checkbox" 
         className="ml-2 text-sm font-medium"
       >
-        {text}
+        {todo.text}
       </label>
     </div>
   )
