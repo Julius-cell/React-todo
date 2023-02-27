@@ -11,7 +11,8 @@ import { useTodos } from "../customHooks/useTodos";
 import { TodoHeader } from './TodoHeader';
 import { TodoError } from "./TodoError";
 import { EmptyTodos } from "./EmptyTodos";
-import { ChangeAlertWithStorageListener } from "./ChangeAlert/ChangeAlert";
+// import { ChangeAlertWithStorageListener } from "./ChangeAlert/ChangeAlert";
+import { ChangeAlert } from "./ChangeAlert/ChangeAlert";
 
 
 function App() {
@@ -67,7 +68,12 @@ function App() {
 
       </TodoList>
       <CreateTodo addTodo={addTodo} />
-      <ChangeAlertWithStorageListener />
+
+      {/* Using HOC */}
+      {/* <ChangeAlertWithStorageListener /> */}
+      
+      {/* Using React Hook */}
+      <ChangeAlert />
     </div>
   )
 }
