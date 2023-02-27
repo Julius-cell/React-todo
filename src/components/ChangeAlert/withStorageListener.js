@@ -1,5 +1,6 @@
 import { useState } from "react";
 
+// HOC
 const withStorageListener = (WrappedComponent) => {
   return function WrappedComponentWithStorageListener(params) {
     const [storageChange, setStorageChange] = useState(false);
