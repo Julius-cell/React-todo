@@ -1,17 +1,36 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import App from './components/App';
+
+
+// function CubeComponent(params) {
+//   return (
+//     <div className='w-32 h-32 bg-orange-400 flex justify-center items-center mx-auto flex-col'>
+//       <p>{params.saludo}</p>
+//       <p>{params.text}</p>
+//     </div>
+//   )
+// }
+
+// function WrapperHoc(saludo) {
+//   return function WrappedComponentWithSaludo(WrappedComponent) {
+//     return function ReturnedComponent(params) {
+//       return (
+//         <WrappedComponent saludo={saludo} text="texto randoom"/>
+//       )
+//     }
+//   }
+// }
+
+// const CubeWithCaracteristics = WrapperHoc('Alojaa')(CubeComponent)
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
+
 root.render(
   <React.StrictMode>
     <App />
   </React.StrictMode>
+  // <CubeWithCaracteristics />
 );
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
